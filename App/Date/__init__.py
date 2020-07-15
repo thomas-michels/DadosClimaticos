@@ -19,6 +19,9 @@ class Date:
         except ValueError:
             raise UnprocessableEntityException("Invalid Date")
 
+    def get_date(self):
+        return self._date
+
     def check_is_future_date(self) -> NoReturn:
         actual_date = datetime.date.today()
 
