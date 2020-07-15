@@ -9,15 +9,16 @@ class TxtConverter:
     def __init__(self, data: dict):
         self._data = data
 
-    def get_lines(self):
+    def _get_lines(self):
 
         return self._data['observations']
 
     def call_file(self, method: str):
-        return open(f'{self._path}\App\Data\climate_data.txt', method)
+        return open(
+            f"{self._path}\App\Data\climate_data_{self._data['observations'][0]['obsTimeLocal'][0:10]}.txt", method)
 
     def write(self):
-        data = self.get_lines()
+        data = self._get_lines()
         file = self.call_file('w')
 
         for line in data:
