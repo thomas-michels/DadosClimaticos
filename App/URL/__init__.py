@@ -20,7 +20,6 @@ class Url:
             month = f"0{month}"
 
         self.__url = self.__url.replace("$$$$$$$$", f"{year}{month}{day}")
-        print(self.__url)
 
     def get_url(self):
         return self.__url
