@@ -1,6 +1,6 @@
 
 import datetime
-from App.Exceptions import UnprocessableEntityException
+from App.BackEnd.Exceptions import UnprocessableEntityException
 from typing import NoReturn
 
 

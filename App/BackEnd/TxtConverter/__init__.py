@@ -15,7 +15,7 @@ class TxtConverter:
 
     def call_file(self, method: str):
         return open(
-            f"{self._path}\App\Data\climate_data_{self._data['observations'][0]['obsTimeLocal'][0:10]}.txt", method)
+            f"{self._path}\App\BackEnd\Data\climate_data_{self._data['observations'][0]['obsTimeLocal'][0:10]}.txt", method)
 
     def write(self):
         data = self._get_lines()

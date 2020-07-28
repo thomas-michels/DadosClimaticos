@@ -1,6 +1,6 @@
 
 from requests import get
-from App.TxtConverter import TxtConverter
+from App.BackEnd.TxtConverter import TxtConverter
 
 
 class ExtractData:
