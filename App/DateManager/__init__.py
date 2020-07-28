@@ -3,16 +3,32 @@ from App.Date import Date
 from App.Exceptions import UnprocessableEntityException
 import pendulum
 from datetime import datetime
+from App.URL import Url
 
 
 class DateManager:
 
     days_list = []
+    _initial_date: Date
+    _final_date: Date
 
     def __init__(self, initial_date: Date, final_date: Date):
-        self._initial_date = initial_date
-        self._final_date = final_date
+        self.set_initial_date(initial_date)
+        self.set_final_date(final_date)
         self._check_dates()
+        self.generate_period()
+
+    def set_initial_date(self, initial_date: Date):
+        self._initial_date = initial_date
+
+    def set_final_date(self, final_date: Date):
+        self._final_date = final_date
+
+    def get_initial_date(self):
+        return self._initial_date
+
+    def get_final_date(self):
+        return self._final_date
 
     def _check_dates(self):
         if self._initial_date.get_date() > self._final_date.get_date():
@@ -34,3 +50,12 @@ class DateManager:
 
     def get_days_list(self):
         return self.days_list
+
+    def generate_url(self):
+
+        urls = []
+
+        for date in self.days_list:
+            urls.append(Url(date))
+
+        return urls

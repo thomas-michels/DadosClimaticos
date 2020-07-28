@@ -1,17 +1,15 @@
 
-from App.URL import Url
 from requests import get
+from App.TxtConverter import TxtConverter
 
 
 class ExtractData:
 
-    _data: dict
+    def __init__(self, urls: list):
+        self._urls = urls
 
-    def __init__(self, url: Url):
-        self._url = url
-
-    def extract(self):
-        self._data = get(self._url.get_url()).json()
-
-    def get_data(self):
-        return self._data
+    def extract_and_save(self):
+        for url in self._urls:
+            data = get(url.get_url()).json()
+            txt = TxtConverter(data)
+            txt.write()
