@@ -19,7 +19,7 @@ class Date:
         except ValueError:
             raise UnprocessableEntityException("Invalid Date")
 
-    def get_date(self):
+    def get_date(self) -> datetime:
         return self._date
 
     def check_is_future_date(self) -> NoReturn:

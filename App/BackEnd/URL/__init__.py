@@ -6,11 +6,17 @@ from App.BackEnd.Date import Date
 class Url:
 
     __url = URL
+    _date: Date
 
     def __init__(self, date: Date):
         self.set_data(date)
 
+    def get_date(self) -> Date:
+        return self._date
+
     def set_data(self, date: Date):
+
+        self._date = date
         day, month, year = date.get_date().day, date.get_date().month, date.get_date().year
 
         if day < 10:

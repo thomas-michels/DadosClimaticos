@@ -13,13 +13,16 @@ class TxtConverter:
 
         return self._data['observations']
 
-    def call_file(self, method: str):
+    def call_one_file(self, name):
         return open(
-            f"{self._path}\App\BackEnd\Data\climate_data_{self._data['observations'][0]['obsTimeLocal'][0:10]}.txt", method)
+            f"{self._path}\Data\climate_data_{name}.txt", 'a')
 
-    def write(self):
+    def call_files(self):
+        return open(
+            f"{self._path}\Data\climate_data_{self._data['observations'][0]['obsTimeLocal'][0:10]}.txt", 'w')
+
+    def write(self, file):
         data = self._get_lines()
-        file = self.call_file('w')
 
         for line in data:
             file.write(f"{line['stationID']};{line['tz']};{line['obsTimeUtc']};{line['obsTimeLocal']};{line['epoch']};"
