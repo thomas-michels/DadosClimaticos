@@ -4,7 +4,8 @@ from settings import PATH
 
 class TxtConverter:
 
-    _path = PATH
+    _path = PATH.replace(r'\dist\run', '')
+    print(_path)
 
     def __init__(self, data: dict):
         self._data = data

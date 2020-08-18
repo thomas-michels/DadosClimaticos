@@ -203,9 +203,11 @@ class Ui_main(object):
 
         if option == "1 Arquivo":
             ext = ExtractData(dm.generate_url(), True)
+            ext.extract_and_save()
 
         elif option == "Vários Arquivos":
             ext = ExtractData(dm.generate_url(), False)
+            ext.extract_and_save()
 
     def run(self):
         app = QtWidgets.QApplication(sys.argv)

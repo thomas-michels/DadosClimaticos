@@ -7,8 +7,10 @@ class Url:
 
     __url = URL
     _date: Date
+    _station_name: str
 
-    def __init__(self, date: Date):
+    def __init__(self, date: Date, station_name: str):
+        self._station_name = station_name
         self.set_data(date)
 
     def get_date(self) -> Date:
@@ -26,6 +28,7 @@ class Url:
             month = f"0{month}"
 
         self.__url = self.__url.replace("$$$$$$$$", f"{year}{month}{day}")
+        self.__url = self.__url.replace("#####", self._station_name)
 
     def get_url(self):
         return self.__url
