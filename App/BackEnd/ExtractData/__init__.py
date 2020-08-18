@@ -1,7 +1,6 @@
 
 from requests import get
 from App.BackEnd.TxtConverter import TxtConverter
-from time import sleep
 
 
 class ExtractData:

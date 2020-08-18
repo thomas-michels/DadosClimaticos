@@ -1,6 +1,5 @@
 
 import datetime
-from App.BackEnd.Exceptions import UnprocessableEntityException
 from typing import NoReturn
 
 
@@ -17,7 +16,7 @@ class Date:
             self._date = datetime.date(int(year), int(month), int(day))
 
         except ValueError:
-            raise UnprocessableEntityException("Invalid Date")
+            pass
 
     def get_date(self) -> datetime:
         return self._date
@@ -26,4 +25,4 @@ class Date:
         actual_date = datetime.date.today()
 
         if self._date > actual_date:
-            raise UnprocessableEntityException("Invalid Date")
+            pass

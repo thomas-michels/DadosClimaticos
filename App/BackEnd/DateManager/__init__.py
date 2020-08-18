@@ -11,8 +11,10 @@ class DateManager:
     days_list = []
     _initial_date: Date
     _final_date: Date
+    _station: str
 
-    def __init__(self, initial_date: Date, final_date: Date):
+    def __init__(self, initial_date: Date, final_date: Date, station: str):
+        self._station = station
         self.set_initial_date(initial_date)
         self.set_final_date(final_date)
         self._check_dates()
@@ -56,6 +58,6 @@ class DateManager:
         urls = []
 
         for date in self.days_list:
-            urls.append(Url(date))
+            urls.append(Url(date, self._station))
 
         return urls

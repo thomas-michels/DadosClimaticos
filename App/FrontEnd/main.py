@@ -114,7 +114,7 @@ class Ui_main(object):
 
         self.horizontalLayout_4.addWidget(self.btn_get)
         self.horizontalLayoutWidget_5 = QtWidgets.QWidget(self.widget)
-        self.horizontalLayoutWidget_5.setGeometry(QtCore.QRect(0, 20, 611, 51))
+        self.horizontalLayoutWidget_5.setGeometry(QtCore.QRect(0, 20, 611, 30))
         self.horizontalLayoutWidget_5.setObjectName("horizontalLayoutWidget_5")
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_5)
         self.horizontalLayout_5.setContentsMargins(20, 0, 20, 0)
@@ -128,14 +128,16 @@ class Ui_main(object):
         self.lbl_estacao.setFont(font)
         self.lbl_estacao.setObjectName("lbl_estacao")
         self.horizontalLayout_5.addWidget(self.lbl_estacao)
-        self.cb_estacao = QtWidgets.QComboBox(self.horizontalLayoutWidget_5)
+
+        self.tf_estacao = QtWidgets.QTextEdit(self.horizontalLayoutWidget_5)
+        self.tf_estacao.setObjectName("tf_estacao")
         font = QtGui.QFont()
         font.setPointSize(12)
-        self.cb_estacao.setFont(font)
-        self.cb_estacao.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.cb_estacao.setObjectName("cb_estacao")
-        self.cb_estacao.addItem("")
-        self.horizontalLayout_5.addWidget(self.cb_estacao)
+        font.setBold(False)
+        font.setWeight(75)
+        self.tf_estacao.setFont(font)
+        self.horizontalLayout_5.addWidget(self.tf_estacao)
+
         self.lbl_intro = QtWidgets.QLabel(self.centralwidget)
         self.lbl_intro.setGeometry(QtCore.QRect(60, 40, 504, 19))
         font = QtGui.QFont()
@@ -186,7 +188,6 @@ class Ui_main(object):
         self.cb_arquivos.setItemText(1, _translate("main", "Vários Arquivos"))
         self.btn_get.setText(_translate("main", "Extrair Dados"))
         self.lbl_estacao.setText(_translate("main", "Estação de extração de dados"))
-        self.cb_estacao.setItemText(0, _translate("main", "IBLUMENA15"))
         self.lbl_intro.setText(_translate("main", "# Insira o período de dias em que você deseja pegar os dados"))
 
     def pressed(self):
@@ -199,7 +200,9 @@ class Ui_main(object):
         date = Date(date_initial.day(), date_initial.month(), date_initial.year())
         date2 = Date(date_final.day(), date_final.month(), date_final.year())
 
-        dm = DateManager(date, date2)
+        station = self.tf_estacao.toPlainText()
+
+        dm = DateManager(date, date2, station)
 
         if option == "1 Arquivo":
             ext = ExtractData(dm.generate_url(), True)
