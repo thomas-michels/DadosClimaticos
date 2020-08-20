@@ -5,7 +5,6 @@ from settings import PATH
 class TxtConverter:
 
     _path = PATH.replace(r'\dist\run', '')
-    print(_path)
 
     def __init__(self, data: dict):
         self._data = data
@@ -16,14 +15,20 @@ class TxtConverter:
 
     def call_one_file(self, name):
         return open(
-            f"{self._path}\Data\climate_data_{name}.txt", 'a')
+            f"{self._path}\Data\climate_data_{name}_station_{self._data['observations'][0]['stationID']}.txt", 'a')
 
     def call_files(self):
         return open(
-            f"{self._path}\Data\climate_data_{self._data['observations'][0]['obsTimeLocal'][0:10]}.txt", 'w')
+            f"{self._path}\Data\climate_data_{self._data['observations'][0]['obsTimeLocal'][0:10]}_station_{self._data['observations'][0]['stationID']}.txt", 'w')
 
     def write(self, file):
         data = self._get_lines()
+
+        file.write("stationID;tz;obsTimeUtc;obsTimeLocal;epoch;lat;lon;solarRadiationHigh;uvHigh;winddirAvg;")
+        file.write("humidityHigh;humidityLow;humidityAvg;qcStatus;tempHigh;tempLow;windspeedHigh;windspeedLow;")
+        file.write("windspeedAvg;windgustHigh;windgustLow;windgustAvg;dewptHigh;dewptLow;dewptAvg;")
+        file.write("windchillHigh;windchillLow;windchillAvg;heatindexHigh;heatindexLow;heatindexAvg;")
+        file.write("pressureMax;pressureMin;pressureTrend;precipRate;precipTotal\n")
 
         for line in data:
             file.write(f"{line['stationID']};{line['tz']};{line['obsTimeUtc']};{line['obsTimeLocal']};{line['epoch']};"
