@@ -24,12 +24,8 @@ class ExtractData:
                 txt = TxtConverter(data)
                 txt.write(txt.call_one_file(name))
 
-            return len(self._urls)/10
-
         else:
             for url in self._urls:
                 data = get(url.get_url()).json()
                 txt = TxtConverter(data)
                 txt.write(txt.call_files())
-
-            return len(self._urls)/10

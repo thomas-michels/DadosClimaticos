@@ -1,7 +1,7 @@
 
-from App.FrontEnd.main import Ui_main
+from App.FrontEnd.main import Ui_MainWindow
 
 if __name__ == '__main__':
 
-    ui = Ui_main()
+    ui = Ui_MainWindow()
     ui.run()

@@ -15,11 +15,11 @@ class TxtConverter:
 
     def call_one_file(self, name):
         return open(
-            f"{self._path}\Data\climate_data_{name}_station_{self._data['observations'][0]['stationID']}.txt", 'a')
+            f"{self._path}\Data\{self._data['observations'][0]['stationID']}_{name}.txt", 'a')
 
     def call_files(self):
         return open(
-            f"{self._path}\Data\climate_data_{self._data['observations'][0]['obsTimeLocal'][0:10]}_station_{self._data['observations'][0]['stationID']}.txt", 'w')
+            f"{self._path}\Data\{self._data['observations'][0]['stationID']}_{self._data['observations'][0]['obsTimeLocal'][0:10]}.txt", 'w')
 
     def write(self, file):
         data = self._get_lines()
