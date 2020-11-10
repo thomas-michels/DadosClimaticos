@@ -34,7 +34,7 @@ class DateManager:
 
     def _check_dates(self):
         if self._initial_date.get_date() > self._final_date.get_date():
-            raise UnprocessableEntityException()
+            pass
 
     def generate_period(self):
         initial_date = datetime(self._initial_date.get_date().year,

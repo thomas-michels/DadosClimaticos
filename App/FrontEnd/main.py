@@ -1,4 +1,3 @@
-from time import sleep
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
@@ -164,24 +163,30 @@ class Ui_MainWindow(object):
         date_initial = self.dt_inicial.date()
         date_final = self.dt_final.date()
 
-        date = Date(date_initial.day(), date_initial.month(), date_initial.year())
-        date2 = Date(date_final.day(), date_final.month(), date_final.year())
+        station = self.tf_estacao.toPlainText().upper()
 
-        station = self.tf_estacao.toPlainText()
+        if date_initial != "" and date_final != "" and station != "":
 
-        dm = DateManager(date, date2, station)
-        self.popup.show()
+            date = Date(date_initial.day(), date_initial.month(), date_initial.year())
+            date2 = Date(date_final.day(), date_final.month(), date_final.year())
 
-        if option == "1 Arquivo":
-            ext = ExtractData(dm.generate_url(), True)
-            ext.extract_and_save()
+            dm = DateManager(date, date2, station)
 
-        elif option == "Vários Arquivos":
-            ext = ExtractData(dm.generate_url(), False)
-            ext.extract_and_save()
+            self.popup.show()
+
+            if option == "1 Arquivo":
+                ext = ExtractData(dm.generate_url(), True)
+                ext.extract_and_save()
+
+            elif option == "Vários Arquivos":
+                ext = ExtractData(dm.generate_url(), False)
+                ext.extract_and_save()
+
+            exit()
 
     def run(self):
         app = QtWidgets.QApplication(sys.argv)
+        app.setStyle("Fusion")
         MainWindow = QtWidgets.QMainWindow()
         ui = Ui_MainWindow()
         ui.setupUi(MainWindow)
