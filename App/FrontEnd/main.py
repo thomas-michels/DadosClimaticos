@@ -1,7 +1,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
-
+from datetime import date
 from App.BackEnd.Date import Date
 from App.BackEnd.DateManager import DateManager
 from App.BackEnd.ExtractData import ExtractData
@@ -62,11 +62,11 @@ class Ui_MainWindow(object):
         self.lbl_inicial.setObjectName("lbl_inicial")
         self.horizontalLayout_2.addWidget(self.lbl_inicial)
         self.dt_inicial = QtWidgets.QDateEdit(self.horizontalLayoutWidget_4)
+        self.dt_inicial.setDate(date.today())
         font = QtGui.QFont()
         font.setPointSize(12)
         self.dt_inicial.setFont(font)
         self.dt_inicial.setCalendarPopup(True)
-        self.dt_inicial.setDate(QtCore.QDate(2020, 1, 1))
         self.dt_inicial.setObjectName("dt_inicial")
         self.horizontalLayout_2.addWidget(self.dt_inicial)
         self.horizontalLayout_4.addLayout(self.horizontalLayout_2)
@@ -85,8 +85,8 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.dt_final.setFont(font)
         self.dt_final.setCalendarPopup(True)
-        self.dt_final.setDate(QtCore.QDate(2020, 1, 1))
         self.dt_final.setObjectName("dt_final")
+        self.dt_final.setDate(date.today())
         self.horizontalLayout_3.addWidget(self.dt_final)
         self.horizontalLayout_4.addLayout(self.horizontalLayout_3)
         self.horizontalLayoutWidget_5 = QtWidgets.QWidget(self.centralwidget)
@@ -182,7 +182,7 @@ class Ui_MainWindow(object):
                 ext = ExtractData(dm.generate_url(), False)
                 ext.extract_and_save()
 
-            exit()
+            # exit()
 
     def run(self):
         app = QtWidgets.QApplication(sys.argv)
